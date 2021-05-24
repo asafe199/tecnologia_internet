@@ -1,0 +1,12 @@
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
+html, body {
+  height: 100%;
+  background-color: aliceblue
+}
+
+body {
+  margin: 0;
+  font-family: Raleway, "Helvetica Neue", sans-serif;
+  background: url("assets/1.png") no-repeat top right;
+}

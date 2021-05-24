@@ -1,0 +1,46 @@
+<mat-progress-bar mode="indeterminate" color="primary" *ngIf="progress"></mat-progress-bar>
+
+<div fxLayout="column">
+  <br/>
+  <div class="row justify-content-center">
+    <img [src]="user.avatar_url" class="rounded-circle" style="max-width: 15%; max-height: 15%">
+  </div>
+  <br/>
+  <div class="row justify-content-center">
+    <h1>
+      Repositórios de <strong>{{user.login}}</strong>
+    </h1>
+  </div>
+  <br/><br/>
+  <span *ngIf="repo.length > 0">
+    <mat-vertical-stepper>
+    <div *ngFor="let i of repo">
+      <mat-step>
+        <ng-template matStepLabel>{{i.name?.toUpperCase()}}</ng-template>
+        URL: <strong><a target="_blank" [href]="i.html_url">{{i.html_url}}</a></strong>
+        <br/>
+        Linguagem: <strong>{{i.language}}</strong>
+        <br/>
+        Criação: <strong>{{i.created_at | date: 'dd/MM/yyyy hh:mm a'}}</strong>
+        <br/>
+        Atualizado em: <strong>{{i.updated_at | date: 'dd/MM/yyyy hh:mm a'}}</strong>
+        <br/>
+        Branch Default: <strong>{{i.default_branch}}</strong>
+        <br/>
+        Descrição: <strong>
+          {{i.description == null ? 'Não Informado' : i.description}}
+      </strong>
+      </mat-step>
+    </div>
+  </mat-vertical-stepper>
+  </span>
+</div>
+<br/><br/>
+<div class="row justify-content-end">
+  <button mat-raised-button color="primary" (click)="back()">
+    <mat-icon>
+      arrow_back
+    </mat-icon>
+    Voltar
+  </button>
+</div>

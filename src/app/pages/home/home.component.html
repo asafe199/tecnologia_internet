@@ -1,0 +1,93 @@
+<mat-progress-bar mode="indeterminate" color="primary" *ngIf="progress"></mat-progress-bar>
+<div class="container-fluid center-container">
+  <div *ngIf="user == null" class="align-items-center">
+    <div class="row justify-content-center">
+      <h1>
+        Consulta de Usuário <strong>GitHub</strong>
+      </h1>
+    </div>
+    <form [formGroup]="formulario" novalidate>
+      <div class="row justify-content-center">
+        <mat-form-field appearance="outline" class="col-lg-4 col-sm-auto col-md-auto col-auto">
+          <mat-label>User Name</mat-label>
+          <input matInput formControlName="name" (keydown.enter)="pesquisar();">
+          <mat-error *ngIf="this.formulario.controls['name'].hasError('required')">
+            Por favor preencha o <strong>User Name</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </form>
+    <div class="row justify-content-center">
+      <div class="col col-lg-2 col-md-auto text-center">
+        <button mat-raised-button (click)="pesquisar();">
+          <mat-icon>
+            search
+          </mat-icon>
+          Pesquisar
+        </button>
+      </div>
+    </div>
+    <br/>
+  </div>
+  <div *ngIf="user != null">
+    <span class="row justify-content-center">
+        <mat-card class="mat-elevation-z8 col-sm-auto card col-md-auto col-auto col-lg-4"
+                  style="padding: 3%; max-width: 80%">
+          <mat-card-header>
+              <img mat-card-avatar src="../../../assets/github.png" style="max-width: 90%" alt="cat">
+            <mat-card-title class="justify-content-center">
+              <a href="javascript:void(0);" disabled>{{user.login}}</a>
+            </mat-card-title>
+          </mat-card-header>
+          <br/>
+          <div class="row justify-content-center">
+            <img mat-card-image [src]="user.avatar_url" class="rounded-circle" style="max-width: 50%">
+          </div>
+          <br/>
+          <mat-card-content>
+            <div class="row justify-content-center">
+                  Nome: <strong>{{user.name}}</strong>
+            </div>
+            <div class="row">
+                  Bio: <strong>{{user.bio == null ? 'Não informado' : user.bio}}</strong>
+            </div>
+            <div class="row">
+                  E-mail: <strong>{{user.email == null ? 'Não informado' : user.email}}</strong>
+            </div>
+            <div class="row">
+                  Nº Repositórios: <strong>{{user.public_repos}}</strong>
+            </div>
+            <div class="row">
+                 Seguidores: <strong>{{user.followers}}</strong>
+            </div>
+            <div class="row">
+                 Localidade: <strong>{{user.location == null ? 'Não informado' : user.location}}</strong>
+            </div>
+            <div class="row">
+                 URL: <a target="_blank" [href]="user.html_url"><strong>{{user.html_url}}</strong></a>
+            </div>
+          </mat-card-content>
+          <mat-card-actions align="center">
+            <button mat-raised-button color="primary" (click)="reposButton();">Repos</button>
+            <button mat-raised-button color="primary" (click)="starredButton();">Starred</button>
+          </mat-card-actions>
+        </mat-card>
+        <br/>
+    </span>
+    <br/><br/>
+    <div class="row justify-content-center">
+      <div class="col col-lg-2 col-md-auto text-center">
+        <button mat-raised-button (click)="limpar();">
+          <mat-icon>
+            clear
+          </mat-icon>
+          Limpar
+        </button>
+      </div>
+    </div>
+  </div>
+  <br/>
+</div>
+<div class="footer-div">
+  <a target="_blank" href="https://github.com/asafe199"><h3>@asafe199</h3></a>
+</div>

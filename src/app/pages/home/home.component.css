@@ -1,0 +1,16 @@
+.center-container{
+  position: fixed;
+  top: 49%;
+  left: 49%;
+  transform: translate(-49%, -49%);
+  padding: 5%;
+}
+
+.footer-div{
+  position: fixed;
+  left: 0;
+  bottom: 2%;
+  width: 100%;
+  color: white;
+  text-align: center;
+}
